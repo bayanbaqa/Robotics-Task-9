@@ -1,0 +1,81 @@
+#include <Servo.h>
+//we work as a Group With muruj - khaled - abdulrahman
+Servo servo1;
+Servo servo2;
+
+const float pi = 3.14159;
+const float L1 = 6; 
+const float L2 = 4; 
+const float L2 = 8; 
+float x; 
+float y; 
+float q1; 
+float Q1; 
+float q2; 
+float Q2;
+float q3; 
+float Q3; 
+float q ; 
+float Q ; 
+const int button1pin = 4;
+const int button2pin = 7;
+int button1state = LOW; 
+int button2state = LOW; 
+float x1 ;
+float y1 ; 
+float L1p ; 
+float L2p ; 
+
+
+void setup() {
+  
+servo1.attach(2);
+servo2.attach(8);
+pinMode (button1pin ,INPUT);
+pinMode (button2pin ,INPUT);
+Serial.begin(9600); 
+
+}
+
+void loop() {
+  
+
+button1state = digitalRead(button1pin);
+button2state = digitalRead(button2pin);
+
+if (button1state == HIGH)
+{
+  Q1 = 40; 
+  Q2 = 60;
+  Q3 = 80;
+  Q - Q1 + Q2 + Q3 ;
+  q1 = Q1*pi/ 180 ;
+  q2 = Q2*pi/ 180 ;
+  q3 = Q2*pi/ 180 ;
+  q = Q*pi/180 ; 
+  x = L1*cos(q1) + L2*cos(q); 
+  y = L1*sin(q1) + L2*sin(q); 
+  servo1.write(Q1); 
+  servo2.write(Q2);
+  
+}
+
+if (button2state == HIGH) 
+{
+  x = 5; 
+  y = 5; 
+  Q = 100; 
+  q = Q*pi/180 ;
+  x1 = pow(x,2); 
+  y1 = pow(y,2); 
+  L1p = pow(L1,2); 
+  L2p = pow(L2,2); 
+  q1 = acos((x1+y1-(L1p+L2p))/(2*L1*L2)); 
+  q2 = q - q1 ; 
+  Q1 = q1*180/pi ; 
+  Q2 = q2*180/pi; 
+  servo1.write(Q1); 
+  servo2.write(Q2);  
+  
+}
+}
